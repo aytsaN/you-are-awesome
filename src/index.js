@@ -12,17 +12,47 @@ return property;
 };
 
 
-const createProtoMagicObject = () => {};
+const createProtoMagicObject = () => {
+
+	function animal () {};
 
 
-var count=0;
+ animal.__proto__ = animal.prototype;
 
+return animal;
+};
+
+
+//http://learn.javascript.ru/static-properties-and-methods
 const incrementor = () => {
+    incrementor.count++;
+    return incrementor;
+};
 
+incrementor.count=0;
+
+incrementor.valueOf = function() {
+    return incrementor.count;
 }
 
-const asyncIncrementor = () => {};
-const createIncrementer = () => {};
+//return incrementor.showCount();
+
+
+const asyncIncrementor = () => {
+	asyncIncrementor.count++;
+    return asyncIncrementor.count;
+};
+asyncIncrementor.count=0;
+// asyncIncrementor.valueOf = function() {
+//     return asyncIncrementor.count;
+// }
+
+
+const createIncrementer = () => {
+	    
+};
+
+
 
 // return same argument not earlier than in one second, and not later, than in two
 const returnBackInSecond = () => {};
