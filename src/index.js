@@ -1,64 +1,82 @@
 // DO WHATEVER YOU WANT HERE
 
 const createEnumerableProperty = (property) => {
-	// Object.defineProperty(Object.prototype, property, { enumerable: true, value:'value' });
-
-return property;
+	return property;
 };
 
 const createNotEnumerableProperty = (property) => {
-Object.defineProperty(Object.prototype, property, { enumerable: false, value:'value' });
-return property;
+	Object.defineProperty(Object.prototype, property, { 
+		enumerable: false,
+		value: 'value'
+	});
+	return property;
 };
 
 
 const createProtoMagicObject = () => {
+	function miracle () {};
 
-	function animal () {};
+ 	miracle.__proto__ = miracle.prototype;
 
-
- animal.__proto__ = animal.prototype;
-
-return animal;
+	return miracle;
 };
 
 
-//http://learn.javascript.ru/static-properties-and-methods
 const incrementor = () => {
-    incrementor.count++;
-    return incrementor;
+  incrementor.count++;
+  return incrementor;
 };
-
-incrementor.count=0;
-
-incrementor.valueOf = function() {
-    return incrementor.count;
+incrementor.count = 0;
+	incrementor.valueOf = function() {
+  return incrementor.count;
 }
-
-//return incrementor.showCount();
 
 
 const asyncIncrementor = () => {
 	asyncIncrementor.count++;
-    return asyncIncrementor.count;
+  return asyncIncrementor;
+
 };
-asyncIncrementor.count=0;
-// asyncIncrementor.valueOf = function() {
-//     return asyncIncrementor.count;
-// }
+asyncIncrementor.count = 0;
+	asyncIncrementor.valueOf = function() {
+  return asyncIncrementor.count;
+}
 
 
 const createIncrementer = () => {
-	    
+	//let count = 0;
+	let inc = {
+		next: function() {
+
+		}
+	};
+	//Object.defineProperty(inc, "a", {value : count++});
+	 return inc;
 };
 
 
 
 // return same argument not earlier than in one second, and not later, than in two
-const returnBackInSecond = () => {};
-const getDeepPropertiesCount = () => {};
-const createSerializedObject = () => {};
-const toBuffer = () => {};
+const returnBackInSecond = (result) => {
+	return new Promise (function(res, rej) {
+		setTimeout(() => {
+    	res(result);
+  	}, 1000);
+  	setTimeout(() => {
+    	rej(new Error());
+  	}, 2000);
+	});
+};
+
+
+const getDeepPropertiesCount = (obj) => {return obj};
+
+
+const createSerializedObject = () => {
+	return new String(JSON.stringify({x:'x'}));
+};
+
+
 const sortByProto = () => {};
 
 exports.createEnumerableProperty = createEnumerableProperty;
