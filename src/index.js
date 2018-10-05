@@ -44,13 +44,13 @@ asyncIncrementor.count = 0;
 
 
 const createIncrementer = () => {
-	//let count = 0;
+
 	let inc = {
 		next: function() {
 
 		}
 	};
-	//Object.defineProperty(inc, "a", {value : count++});
+
 	 return inc;
 };
 
